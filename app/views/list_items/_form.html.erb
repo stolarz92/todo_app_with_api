@@ -1,0 +1,37 @@
+<%= form_with(model: list_item, local: true) do |form| %>
+  <% if list_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(list_item.errors.count, "error") %> prohibited this list_item from being saved:</h2>
+
+      <ul>
+      <% list_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :list_item_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :list_item_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :completed %>
+    <%= form.date_select :completed, id: :list_item_completed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :todo_list_id %>
+    <%= form.text_field :todo_list_id, id: :list_item_todo_list_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
