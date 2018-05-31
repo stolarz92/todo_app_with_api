@@ -9,4 +9,24 @@ Rails.application.routes.draw do
 
   root 'todo_lists#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #JSON API
+  # namespace 'api' do
+  #   namespace 'v1' do
+  #     jsonapi_resources :todo_lists
+  #     jsonapi_resources :list_items
+  #   end
+  # end
+
+  namespace :api do
+    namespace :v1 do
+      jsonapi_resources :todo_lists do
+        jsonapi_resources :list_items do
+          member do
+            patch :complete
+          end
+        end
+      end
+    end
+  end
 end
