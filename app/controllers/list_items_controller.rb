@@ -4,7 +4,17 @@ class ListItemsController < ApplicationController
   # POST /list_items
   # POST /list_items.json
   def create
-    @todo_item = @todo_list.todo_items.create(todo_item_params)
+    @todo_item = @todo_list.list_items.create(list_item_params)
+    redirect_to @todo_list
+  end
+
+  def destroy
+    @list_item = @todo_list.list_items.find(params[:id])
+    if @list_item.destroy
+      flash[:success] = "List item was deleted."
+    else
+      flash[:error] = "List item could not be deleted."
+    end
     redirect_to @todo_list
   end
 
