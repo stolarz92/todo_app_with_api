@@ -18,9 +18,17 @@ RSpec.describe ListItem, type: :model do
   end
 
   describe 'instance methods' do
-    it 'set item completed' do
-      list_item.toggle_complete
-      expect(list_item.completed?).to be_truthy
+    describe '#toggle_complete' do
+      it 'set item completed' do
+        list_item.toggle_complete
+        expect(list_item.completed).to be_kind_of(Time)
+      end
+
+      it 'set item completed to nil' do
+        list_item.update_attribute(:completed, Time.now)
+        list_item.toggle_complete
+        expect(list_item.completed).to be_nil
+      end
     end
   end
 end
