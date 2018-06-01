@@ -25,9 +25,9 @@ class ListItemsController < ApplicationController
     @list_item.toggle_complete
 
     if @list_item.completed?
-      redirect_to @todo_list, notice: 'List item uncompleted'
-    else
       redirect_to @todo_list, notice: 'List item completed'
+    else
+      redirect_to @todo_list, notice: 'List item uncompleted'
     end
   end
 
