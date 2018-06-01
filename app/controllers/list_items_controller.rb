@@ -22,11 +22,11 @@ class ListItemsController < ApplicationController
   end
 
   def complete
+    @list_item.toggle_complete
+
     if @list_item.completed?
-      @list_item.update_attribute(:completed, nil)
       redirect_to @todo_list, notice: 'List item uncompleted'
     else
-      @list_item.update_attribute(:completed, Time.now)
       redirect_to @todo_list, notice: 'List item completed'
     end
   end
