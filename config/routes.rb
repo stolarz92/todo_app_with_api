@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'static_pages/homepage'
+
+  get 'static_pages/about'
+
+  get 'static_pages/contact'
+
   devise_for :users
   resources :todo_lists do
     resources :list_items do
@@ -8,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'todo_lists#index'
+  root 'static_pages#homepage'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #JSON API
