@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @list_item.name
+%p
+  %strong Description:
+  = @list_item.description
+%p
+  %strong Completed:
+  = @list_item.completed
+%p
+  %strong Todo list:
+  = @list_item.todo_list
+= link_to 'Edit', edit_list_item_path(@list_item)
+|
+= link_to 'Back', list_items_path

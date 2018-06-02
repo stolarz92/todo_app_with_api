@@ -1,0 +1,22 @@
+%p#notice= notice
+%h1 List Items
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Completed
+      %th Todo list
+      %th{:colspan => "3"}
+  %tbody
+    - @list_items.each do |list_item|
+      %tr
+        %td= list_item.name
+        %td= list_item.description
+        %td= list_item.completed
+        %td= list_item.todo_list
+        %td= link_to 'Show', list_item
+        %td= link_to 'Edit', edit_list_item_path(list_item)
+        %td= link_to 'Destroy', list_item, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New List Item', new_list_item_path

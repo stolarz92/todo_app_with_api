@@ -1,0 +1,10 @@
+- if list_item.completed?
+  %p= list_item.name
+  %p= list_item.description
+  = link_to 'Delete', todo_list_list_item_path(@todo_list, list_item.id), method: :delete, data: { confirm: "Are you sure?" }
+  = link_to 'Uncomplete', complete_todo_list_list_item_path(@todo_list, list_item.id), method: :patch
+- else
+  %p= list_item.name
+  %p= list_item.description
+  = link_to 'Delete', todo_list_list_item_path(@todo_list, list_item.id), method: :delete, data: { confirm: "Are you sure?" }
+  = link_to 'Mark as complete', complete_todo_list_list_item_path(@todo_list, list_item.id), method: :patch

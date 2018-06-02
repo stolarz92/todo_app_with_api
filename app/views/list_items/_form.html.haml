@@ -1,0 +1,4 @@
+= form_for([@todo_list, @todo_list.list_items.build]) do |f|
+  = f.text_field :name, placeholder: "New Todo"
+  = f.text_field :description, placeholder: "Optional description"
+  = f.submit
