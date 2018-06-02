@@ -1,0 +1,36 @@
+%header#header
+  .container
+    #logo.pull-left
+      %h1
+        %a.scrollto{:href => "#body"}
+          Todo App
+          %span z warstwą API
+      / Uncomment below if you prefer to use an image logo
+      / <a href="#body"><img src="img/logo.png" alt="" title="" /></a>
+    %nav#nav-menu-container
+      %ul.nav-menu
+        %li.menu-active
+          %a{:href => "#body"} Strona główna
+        %li
+          %a{:href => "#about"} O pracy
+        %li
+          %a{:href => "#services"} Zaloguj się
+        %li
+          %a{:href => "#portfolio"} Zarejestruj
+        %li
+          %a{:href => "#team"} Team
+        %li.menu-has-children
+          %a{:href => ""} Drop Down
+          %ul
+            %li
+              %a{:href => "#"} Drop Down 1
+            %li
+              %a{:href => "#"} Drop Down 3
+            %li
+              %a{:href => "#"} Drop Down 4
+            %li
+              %a{:href => "#"} Drop Down 5
+        %li
+          %a{:href => "#contact"} Contact
+    / #nav-menu-container
+/ #header

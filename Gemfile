@@ -64,5 +64,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jsonapi-resources'
 gem 'devise'
 gem "haml-rails", "~> 1.0"
+
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.0.13'
+gem "animate-rails"
+gem "font-ionicons-rails"
+gem 'owlcarousel-rails'
+gem 'magnific-popup-rails', '~> 1.1'
