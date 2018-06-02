@@ -10,27 +10,18 @@
     %nav#nav-menu-container
       %ul.nav-menu
         %li.menu-active
-          %a{:href => "#body"} Strona główna
+          = link_to 'Strona główna', static_pages_homepage_path
         %li
-          %a{:href => "#about"} O pracy
+          = link_to 'O pracy', static_pages_about_path
         %li
-          %a{:href => "#services"} Zaloguj się
+          = link_to 'Kontakt', static_pages_contact_path
         %li
-          %a{:href => "#portfolio"} Zarejestruj
-        %li
-          %a{:href => "#team"} Team
-        %li.menu-has-children
-          %a{:href => ""} Drop Down
-          %ul
-            %li
-              %a{:href => "#"} Drop Down 1
-            %li
-              %a{:href => "#"} Drop Down 3
-            %li
-              %a{:href => "#"} Drop Down 4
-            %li
-              %a{:href => "#"} Drop Down 5
-        %li
-          %a{:href => "#contact"} Contact
+        - if current_user
+          = link_to 'Moje listy', todo_lists_path
+          = link_to 'Wyloguj się', destroy_user_session_path, method: :delete
+        - else
+          = link_to 'Zaloguj się', new_user_session_path
+          %li
+            = link_to 'Zarejestruj się', new_user_registration_path
     / #nav-menu-container
 / #header
