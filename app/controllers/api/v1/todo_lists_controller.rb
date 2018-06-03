@@ -1,5 +1,6 @@
 module Api
   module V1
-    class TodoListsController < JSONAPI::ResourceController; end
+    class TodoListsController < ApiBaseController
+    end
   end
 end

@@ -1,5 +1,6 @@
 module Api
   module V1
-    class ListItemsController < JSONAPI::ResourceController; end
+    class ListItemsController < ApiBaseController
+    end
   end
 end
