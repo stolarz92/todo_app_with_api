@@ -7,6 +7,7 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
   let(:todo_list_id) { todo_list.id }
   let!(:list_items) { create_list(:list_item, 20,
                                  todo_list: todo_list) }
+  let(:list_item) { list_items.first }
   let(:list_item_id) { list_items.first.id }
   let(:valid_relationships) {
     {
@@ -179,6 +180,25 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
+    end
+  end
+
+  describe 'PATCH#complete /api/v1/list-item/:id/complete' do
+    let(:patch_request) { patch "/api/v1/list-items/#{list_item_id}/complete" }
+
+    it 'set list item completed' do
+      expect(list_item.completed).to be_nil
+      patch_request
+      expect(response).to have_http_status(200)
+      expect(json_attributes['completed']).to_not be_nil
+    end
+
+    it 'set list item uncompleted' do
+      list_item.toggle_complete
+      expect(list_item.reload.completed).to be_kind_of(Time)
+      patch_request
+      expect(response).to have_http_status(200)
+      expect(json_attributes['completed']).to be_nil
     end
   end
 end
