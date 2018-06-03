@@ -72,3 +72,4 @@ gem "animate-rails"
 gem "font-ionicons-rails"
 gem 'owlcarousel-rails'
 gem 'magnific-popup-rails', '~> 1.1'
+gem 'jwt'

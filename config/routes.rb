@@ -27,11 +27,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      jsonapi_resources :todo_lists do
-        jsonapi_resources :list_items do
-          member do
-            patch :complete
-          end
+      jsonapi_resources :todo_lists
+      jsonapi_resources :list_items do
+        member do
+          patch :complete
         end
       end
     end
