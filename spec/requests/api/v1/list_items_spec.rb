@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ListItemsController, type: :request do
-  let(:headers) { { 'Content-Type' => 'application/vnd.api+json' } }
   let!(:user) { create(:user) }
   let!(:todo_list) { create(:todo_list,
                             user_id: user.id) }
@@ -20,8 +19,17 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
     }
   }
 
+  before do
+    post '/users/sign_in.json',
+         params: { "user"=>{ "email"=>"#{user.email}","password"=>"password123" } }.to_json,
+         headers: {"Content-Type"=>"application/json" }
+    @current_user = User.find_by(email: json['email'])
+    @token = JWTWrapper.encode({"user_id"=>@current_user.id})
+    @headers = {'Content-Type' => 'application/vnd.api+json', 'Authorization'=>"Bearer #{@token}"}
+  end
+
   describe 'GET#index api/v1/todo-lists' do
-    before { get "/api/v1/todo-lists/#{todo_list_id}/list-items" }
+    before { get "/api/v1/todo-lists/#{todo_list_id}/list-items", headers: @headers }
 
     context 'when todo_list exists' do
       it 'returns list items' do
@@ -38,7 +46,7 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
     xcontext 'when todo_list does not exist' do
       let (:todo_list_id) { 0 }
 
-      before { get "/api/v1/todo-lists/#{todo_list_id}/list-items" }
+      before { get "/api/v1/todo-lists/#{todo_list_id}/list-items", headers: @headers }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -51,7 +59,7 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
   end
 
   describe 'GET#show api/v1/todo-lists/:id/list-items/:id' do
-    before { get "/api/v1/todo-lists/#{todo_list_id}/list-items/#{list_item_id}" }
+    before { get "/api/v1/todo-lists/#{todo_list_id}/list-items/#{list_item_id}", headers: @headers }
 
     context 'when todo_list exists' do
       it 'returns list item' do
@@ -94,7 +102,7 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
       let(:post_request) do
         post "/api/v1/todo-lists/#{todo_list_id}/list-items/",
              params: valid_params.to_json,
-             headers: headers
+             headers: @headers
       end
 
       before { post_request }
@@ -124,7 +132,7 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
       let(:post_request) do
         post "/api/v1/todo-lists/#{todo_list_id}/list-items/",
              params: invalid_params.to_json,
-             headers: headers
+             headers: @headers
       end
 
       before { post_request }
@@ -153,7 +161,7 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
     let(:put_request) do
       put "/api/v1/todo-lists/#{todo_list_id}/list-items/#{list_item_id}",
            params: valid_params.to_json,
-           headers: headers
+           headers: @headers
     end
 
     before { put_request }
@@ -183,7 +191,7 @@ RSpec.describe Api::V1::ListItemsController, type: :request do
   end
 
   describe 'DELETE#destroy /api/v1/todo-list/:id/list-item/:id' do
-    before { delete "/api/v1/todo-lists/#{todo_list_id}/list-items/#{list_item_id}" }
+    before { delete "/api/v1/todo-lists/#{todo_list_id}/list-items/#{list_item_id}", headers: @headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
