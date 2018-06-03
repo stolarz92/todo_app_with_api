@@ -13,7 +13,15 @@ end
 
 User.all.each do |user|
   5.times do |i|
-    user.todo_lists.find_or_create_by!(name: "Lista #{i + 1}")
+    user.todo_lists.find_or_create_by!(name: "Lista #{i + 1}") do |list|
+      list.description = "Suspendisse posuere consequat velit eget viverra. Sed ultrices,
+                          lorem vitae congue bibendum, quam mauris pharetra nisi,
+                          et consequat nibh tortor vel eros. Duis pharetra eget velit nec tempor.
+                          Suspendisse faucibus augue est, et tempor nisi tincidunt ac.
+                          Duis et libero nec dolor venenatis convallis. Donec sed feugiat urna.
+                          Proin quis dolor pharetra, finibus velit id, tincidunt neque.
+                          Suspendisse ut est venenatis, mollis ante at, volutpat tellus."
+    end
   end
 end
 
