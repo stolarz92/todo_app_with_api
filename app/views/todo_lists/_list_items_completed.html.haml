@@ -1,0 +1,25 @@
+- list_items_completed.each do |list_item|
+  %li.todo-item.high
+    .icon-check
+      %i.pad-15.material-icons.md-36.md-light check_circle
+    .icon-delete
+      = link_to todo_list_list_item_path(list_item.todo_list,
+                      list_item.id),
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } do
+        %i.pad-15.material-icons.md-36.md-light delete
+    .content= list_item.description
+  -#%li.todo-item.medium
+  -#  .icon-check
+  -#    %i.pad-15.material-icons.md-36.md-light check_circle
+  -#  .icon-delete
+  -#    %i.pad-15.material-icons.md-36.md-light delete
+  -#  .content
+  -#    Learn React
+  -#%li.todo-item.low
+  -#  .icon-check
+  -#    %i.pad-15.material-icons.md-36.md-light check_circle
+  -#  .icon-delete
+  -#    %i.pad-15.material-icons.md-36.md-light delete
+  -#  .content
+  -#    Learn React

@@ -1,0 +1,20 @@
+- list_items_in_progress.each do |list_item|
+  %li.todo-item.high{:draggable => "true"}
+    .card
+      %h3.todo-title
+        %span.action
+          = link_to  todo_list_list_item_path(list_item.todo_list, list_item.id), method: :delete, data: { confirm: "Are you sure?" } do
+            %i.material-icons.md-36.icon-delete delete
+          = link_to complete_todo_list_list_item_path(list_item.todo_list, list_item.id), method: :patch do
+            %i.icon-checkbox-outline.material-icons.md-36.md-dark check_box_outline_blank
+            %i.icon-checkbox.material-icons.md-36.md-light check_box
+        %span.title= list_item.name
+      %p.todo-description
+        = list_item.description
+  -#%span.todo-priority High
+  -#%li.todo-item.new
+  -#  .card
+  -#    %h3.todo-title
+  -#      %span.action
+  -#        %i.complete.material-icons.md-36.md-light add_circle_outline
+  -#      %span.title ADD A TODO

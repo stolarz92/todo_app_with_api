@@ -3,6 +3,9 @@ class ListItem < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :completed, -> { where.not(completed: nil) }
+  scope :not_completed, -> { where(completed: nil) }
+
   def toggle_complete
     if completed?
       update_attribute(:completed, nil)

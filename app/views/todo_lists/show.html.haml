@@ -1,18 +1,27 @@
-%p
-  %strong Title:
-  = @todo_list.name
-%p
-  %strong Description:
-  = @todo_list.description
-#todo_items_wrapper
-  = render @todo_list.list_items
-  #form
-    = render "list_items/form"
-= link_to 'Edit', edit_todo_list_path(@todo_list)
-|
-= link_to 'Back', todo_lists_path
-|
-= link_to 'Delete',                  |
-  todo_list_path(@todo_list),        |
-  method: :delete,                   |
-  data: { confirm: "Are you sure?" } |
+%section#services
+  .container
+    .section-header
+      %h2
+        = @todo_list.name
+
+        = link_to 'Edytuj', edit_todo_list_path(@todo_list), class: 'btn btn-xs btn-warning'
+        = link_to 'Usuń',                  |
+          todo_list_path(@todo_list),        |
+          class: 'btn btn-xs btn-danger',   |
+          method: :delete,                   |
+          data: { confirm: "Jesteś pewien?" }
+
+      %p= @todo_list.description
+
+  #todo_items_wrapper
+    %section.todo-list-container
+      #form
+        = render "list_items/form"
+      .todo-in-progress
+        %h2.title Zadania w trakcie
+        %ul#target.todo-list{:ondragstart => ""}
+          = render partial: 'list_items_in_progress', locals: { list_items_in_progress: @todo_list.list_items.not_completed }
+      .todo-completed
+        %h2 Ukończone
+        %ul.todo-list-completed
+          = render partial: 'list_items_completed', locals: { list_items_completed: @todo_list.list_items.completed }
