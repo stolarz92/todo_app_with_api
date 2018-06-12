@@ -1,2 +1,10 @@
-%h1 StaticPages#homepage
-%p Find me in app/views/static_pages/homepage.html.haml
+%section#intro
+  .intro-content
+    %h2 Praca magisterska
+    %h3 Aplikacja ToDo w Ruby on Rails z warstwą API
+    %div
+      = link_to 'O pracy', static_pages_about_path, class: 'btn-get-started'
+      - if current_user
+        = link_to 'Wyloguj się', destroy_user_session_path, method: :delete, class: 'btn-projects'
+      - else
+        = link_to 'Logowanie', new_user_session_path, class: 'btn-projects'
