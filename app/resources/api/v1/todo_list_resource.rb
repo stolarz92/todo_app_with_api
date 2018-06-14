@@ -7,6 +7,10 @@ module Api
 
       paginator :paged_with_all
 
+      filter :name, apply: -> (records, value, _options) {
+          records.where(name: value)
+        }
+
       def self.records(options)
         current_user = options.dig(:context, :current_user)
         current_user.todo_lists
