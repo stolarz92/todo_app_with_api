@@ -5,6 +5,8 @@ module Api
       has_one :user
       has_many :list_items
 
+      paginator :paged_with_all
+
       def self.records(options)
         current_user = options.dig(:context, :current_user)
         current_user.todo_lists
