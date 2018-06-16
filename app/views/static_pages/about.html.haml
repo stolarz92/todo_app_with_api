@@ -22,12 +22,105 @@
             Dodatkowo aplikacja jest wzbogacona o warstwę interfejsu API, który za pomocą REST umożliwia |
             dostęp do danych zgromadzonych w serwisie, ich modyfikację i usuwanie.
     .row
-      .col-lg-6
+      .col-sm-12
         .box.wow.fadeInLeft
-          %h4.title Jak korzystać z API?
+          %h4.title Jak korzystać z API
           %p.description
+            Z API można połączyć się z każdej aplikacji / serwisu umożliwiającego wysyłanie zapytań HTTP. W przykładzie
+            pokazuję, jak użyć do tego aplikacji Postman, ale równie dobrze można użyć do tego cURL czy też napisanego
+            klienta w dowolnym języku, ktory umożliwi wysyłanie zapytań z użyciem HTTP.
+          %br
+            %ul
+              %li
+                I. Pobierz aplikację kompatybilną z systemem którego używasz ze strony
+                %a{href: 'https://www.getpostman.com/apps'} https://www.getpostman.com/apps
+              %li II. Zainstaluj i uruchom aplikację.
+              %li
+                III. Po uruchomieniu aplikacji:
+                %ul
+                  %li
+                    1. Zmień czasownik
+                    %code HTTP
+                    na
+                    %code POST
+                  %li
+                    2. Wpisz URL prowadzący do logowania się:
+                    %code http://leszczyna.wzks.uj.edu.pl/12_stolarski/todo_app_with_api/users/sign_in.json
+                  %li
+                    3. Ustaw header: jako klucz wpisz
+                    %code 'Content-Type'
+                  %li
+                    4. Jako wartość:
+                    %code 'application/json'.
+                = image_tag("instructions/instrukcja 1.jpg", class: 'img img-responsive')
+              %li
+                %br
+                %br
+                IV. Kolejny krok:
+                %ul
+                  %li 1. Przejdź do zakładki body
+                  %li
+                    2. Wybierz pole raw, aby wprowadzić dane do przesłania (użyty jest tu już istniejący użytkownik)
+                  %li
+                    3. Wprowadź dane.
+                    %code
+                      { |
+                        "user": { |
+                          "email":"user_1@test.pl", |
+                          "password":"password123" |
+                        } |
+                      }
+                  %li
+                    4. Kliknij przycisk
+                    %code 'Send'
+                    , aby wysłać zapytanie.
+                = image_tag("instructions/instrukcja 2.jpg", class: 'img img-responsive')
+              %li
+                %br
+                %br
+                V. Kopiowanie tokenu z odpowiedzi
+                %ul
+                  %li 1. Skopiuj odebrany token do schowka
+              = image_tag("instructions/instrukcja 3.jpg", class: 'img img-responsive')
+              %li
+                %br
+                %br
+                VI. Wysyłanie autoryzowanego zapytania do API
+                %ul
+                  %li
+                    1. Zmień czasownik HTTP na
+                    %code GET
+                  %li
+                    2. Wprowadź nowy url:
+                    %code http://leszczyna.wzks.uj.edu.pl/12_stolarski/todo_app_with_api/api/v1/todo-lists
+                  %li 3. Wybierz sposób autoryzacji Bearer Token
+                  %li 4. Wklej token ze schowka
+                  %li 5. Kliknij przycisk "Send"
+                  %li
+                    6. W dolnym oknie powinna pokazać się odpowiedź od serwera w formacie
+                    %code JSON
+                    z danymi.
+              = image_tag("instructions/instrukcja 4.jpg", class: 'img img-responsive')
+              %li
+                %br
+                %br
+                VII. Przykładowe URLe do użycia (do każdego potrzeba wcześniej tokenu, jak go zdobyć? Patrz punkt III i IV)
+                %ul
+                  %li
+                    1. Pobranie list todo dla użytkownika:
+                    %code http://leszczyna.wzks.uj.edu.pl/12_stolarski/todo_app_with_api/api/v1/todo-lists
+                  %li
+                    2. Pobranie list todo dla użytkownika wraz z listą zadań:
+                    %code http://leszczyna.wzks.uj.edu.pl/12_stolarski/todo_app_with_api/api/v1/todo-lists/1?include=list-items
+                  %li
+                    3. Pobranie list todo dla użytkownika wraz z użyciem filtrowania:
+                    %code http://leszczyna.wzks.uj.edu.pl/12_stolarski/todo_app_with_api/api/v1/todo-lists?filter[name]=Lista+1
+                  %li
+                    4. Pobranie list todo dla użytkownika wraz z użyciem paginacji oraz z dołączeniem zadań
+                    %code http://leszczyna.wzks.uj.edu.pl/12_stolarski/todo_app_with_api/api/v1/todo-lists?page[size]=2&include=list-items
+                  %li
+                    4. Usunięcie listy (pamiętaj o zmianie czasownika HTTP na
+                    %code DELETE
+                    )
+                    %code http://leszczyna.wzks.uj.edu.pl/12_stolarski/todo_app_with_api/api/v1/todo-lists/4
 
-      .col-lg-6
-        .box.wow.fadeInRight
-          %h4.title Coś jeszcze
-          %p.description
