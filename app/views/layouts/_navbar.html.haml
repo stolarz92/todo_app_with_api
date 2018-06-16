@@ -14,8 +14,6 @@
         %li
           = link_to 'O pracy', static_pages_about_path
         %li
-          = link_to 'Kontakt', static_pages_contact_path
-        %li
         - if current_user
           = link_to 'Moje listy', todo_lists_path
           = link_to 'Wyloguj się', destroy_user_session_path, method: :delete

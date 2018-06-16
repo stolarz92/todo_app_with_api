@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   get 'static_pages/about'
 
-  get 'static_pages/contact'
-
   devise_for :users, controllers: {sessions: 'users/sessions'}
   resources :todo_lists do
     resources :list_items do
