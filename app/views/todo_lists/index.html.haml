@@ -2,7 +2,7 @@
   .container
     .section-header
       %h2 Twoje listy zadań
-      = link_to 'New Todo List', new_todo_list_path, class: 'btn-projects'
+      = link_to 'Nowa lista', new_todo_list_path, class: 'btn-projects'
     .row
       - @todo_lists.each do |todo_list|
         .col-lg-3
@@ -13,4 +13,4 @@
               %p.description
                 =todo_list.description.truncate(30)
               = link_to 'Edytuj', edit_todo_list_path(todo_list), class: 'btn btn-xs btn-warning'
-              = link_to 'Usuń', todo_list, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+              = link_to 'Usuń', todo_list, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Jesteś pewien, że chcesz usunąć?' }

@@ -14,9 +14,9 @@ class ListItemsController < ApplicationController
   def destroy
     @list_item = @todo_list.list_items.find(params[:id])
     if @list_item.destroy
-      flash[:success] = "List item was deleted."
+      flash[:success] = "Zadanie usunięte."
     else
-      flash[:error] = "List item could not be deleted."
+      flash[:error] = "Zadanie nie mogło zostac usunięte."
     end
     redirect_to @todo_list
   end
@@ -25,9 +25,9 @@ class ListItemsController < ApplicationController
     @list_item.toggle_complete
 
     if @list_item.completed?
-      redirect_to @todo_list, notice: 'List item completed'
+      redirect_to @todo_list, notice: 'Zadanie oznaczone jako wykonane.'
     else
-      redirect_to @todo_list, notice: 'List item uncompleted'
+      redirect_to @todo_list, notice: 'Zadanie oznaczone jako niewykonane.'
     end
   end
 

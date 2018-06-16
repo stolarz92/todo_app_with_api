@@ -1,25 +1,6 @@
 = form_for([@todo_list, @todo_list.list_items.build]) do |f|
-  = f.text_field :name, placeholder: "New Todo"
-  = f.text_field :description, placeholder: "Optional description"
-  = f.submit
-
-%main.main-wrap.hidden{:role => "main"}
-  %header.header{:role => "heading"}
-    %h1.app-header Add your task
-  %section.main-content
-    %section.todo-form
-      %form#todoForm{:role => "form"}
-        .row
-          %label{:for => "title"} Title
-          %input#title.form-input{:placeholder => "Learn JavaScript", :type => "text"}/
-        .row
-          %label{:for => "description"} Description
-          %textarea#description{:cols => "30", :placeholder => "Coz you already know Java", :rows => "4"}
-        .row
-          %label{:for => "priority"} Priority
-          %select#priority
-            %option{:value => "high"} High
-            %option{:value => "med"} Medium
-            %option{:value => "low"} Low
-        .row.submit-btn
-          %input.primary-button{:type => "submit", :value => "DO IT"}/
+  = f.text_field :name, placeholder: "Nowe zadanie"
+  = f.text_field :description, placeholder: "Opis (opcjonalnie)"
+  = f.submit 'Utwórz nowe zadanie'
+%br
+%br
