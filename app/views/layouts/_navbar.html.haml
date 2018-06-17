@@ -2,14 +2,15 @@
   .container
     #logo.pull-left
       %h1
-        %a.scrollto{:href => "#body"}
-          Todo App
-          %span z warstwą API
+        %a.scrollto
+          = link_to root_path do
+            Todo App
+            %span z warstwą API
       / Uncomment below if you prefer to use an image logo
       / <a href="#body"><img src="img/logo.png" alt="" title="" /></a>
     %nav#nav-menu-container
       %ul.nav-menu
-        %li{class: active_class(static_pages_homepage_path)}
+        %li{class: active_class(static_pages_homepage_path, true)}
           = link_to 'Strona główna', static_pages_homepage_path
         %li{class: active_class(static_pages_about_path)}
           = link_to 'O pracy', static_pages_about_path
