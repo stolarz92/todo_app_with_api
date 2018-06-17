@@ -9,17 +9,19 @@
       / <a href="#body"><img src="img/logo.png" alt="" title="" /></a>
     %nav#nav-menu-container
       %ul.nav-menu
-        %li.menu-active
+        %li{class: active_class(static_pages_homepage_path)}
           = link_to 'Strona główna', static_pages_homepage_path
-        %li
+        %li{class: active_class(static_pages_about_path)}
           = link_to 'O pracy', static_pages_about_path
-        %li
         - if current_user
-          = link_to 'Moje listy', todo_lists_path
-          = link_to 'Wyloguj się', destroy_user_session_path, method: :delete
+          %li{class: active_class(todo_lists_path)}
+            = link_to 'Moje listy', todo_lists_path
+          %li{class: active_class(destroy_user_session_path)}
+            = link_to 'Wyloguj się', destroy_user_session_path, method: :delete
         - else
-          = link_to 'Zaloguj się', new_user_session_path
-          %li
+          %li{class: active_class(new_user_session_path)}
+            = link_to 'Zaloguj się', new_user_session_path
+          %li{class: active_class(new_user_registration_path)}
             = link_to 'Zarejestruj się', new_user_registration_path
     / #nav-menu-container
 / #header
