@@ -9,16 +9,16 @@
           %br/
           = f.email_field :email, autofocus: true, autocomplete: "email"
         .field
-          = f.label :password
+          = f.label :password, 'Hasło'
           - if @minimum_password_length
             %em
               (#{@minimum_password_length} characters minimum)
           %br/
           = f.password_field :password, autocomplete: "off"
         .field
-          = f.label :password_confirmation
+          = f.label :password_confirmation, 'Powtórz hasło'
           %br/
           = f.password_field :password_confirmation, autocomplete: "off"
-        .actions
-          = f.submit "Sign up"
+        .actions.submit-registration-button
+          = f.submit "Zarejestruj się", class: 'btn-projects'
       = render "devise/shared/links"

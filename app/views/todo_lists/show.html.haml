@@ -13,15 +13,15 @@
 
       %p= @todo_list.description
 
-  #todo_items_wrapper
-    %section.todo-list-container
-      #form
-        = render "list_items/form"
-      .todo-in-progress
-        %h2.title Zadania w trakcie
-        %ul#target.todo-list{:ondragstart => ""}
-          = render partial: 'list_items_in_progress', locals: { list_items_in_progress: @todo_list.list_items.not_completed }
-      .todo-completed
-        %h2 Ukończone
-        %ul.todo-list-completed
-          = render partial: 'list_items_completed', locals: { list_items_completed: @todo_list.list_items.completed }
+    #todo_items_wrapper
+      %section.todo-list-container
+        #form
+          = render "list_items/form"
+        .todo-in-progress
+          %h2.title Zadania w trakcie
+          %ul#target.todo-list{:ondragstart => ""}
+            = render partial: 'list_items_in_progress', locals: { list_items_in_progress: @todo_list.list_items.not_completed }
+        .todo-completed
+          %h2 Ukończone
+          %ul.todo-list-completed
+            = render partial: 'list_items_completed', locals: { list_items_completed: @todo_list.list_items.completed }

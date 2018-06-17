@@ -1,6 +1,6 @@
 = form_for([@todo_list, @todo_list.list_items.build]) do |f|
   = f.text_field :name, placeholder: "Nowe zadanie"
   = f.text_field :description, placeholder: "Opis (opcjonalnie)"
-  = f.submit 'Utwórz nowe zadanie'
+  = f.submit 'Utwórz nowe zadanie', class: 'btn-projects'
 %br
 %br

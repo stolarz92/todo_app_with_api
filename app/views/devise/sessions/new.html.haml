@@ -8,13 +8,13 @@
           %br/
           = f.email_field :email, autofocus: true, autocomplete: "email"
         .field
-          = f.label :password
+          = f.label :password, 'Hasło'
           %br/
           = f.password_field :password, autocomplete: "off"
         - if devise_mapping.rememberable?
           .field
             = f.check_box :remember_me
-            = f.label :remember_me
-        .actions
-          = f.submit "Log in"
+            = f.label :remember_me, 'Pamiętaj mnie'
+        .actions.submit-registration-button
+          = f.submit "Zaloguj", class: 'btn-projects'
       = render "devise/shared/links"
